@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+import "waku/message/v1/message.proto";
+
+// 13/WAKU2-STORE rfc: https://rfc.vac.dev/spec/13/
+// Protocol identifier: /vac/waku/store/2.0.0-beta4
+package waku.store.v2beta4;
+
+message Index {
+  bytes digest = 1;
+  sint64 receiver_time = 2;
+  sint64 sender_time = 3;
+  string pubsub_topic = 4;
+}
+
+message PagingInfo {
+  optional uint64 page_size = 1;
+  optional Index cursor = 2;
+  enum Direction {
+    BACKWARD = 0;
+    FORWARD = 1;
+  }
+  optional Direction direction = 3;
+}
+
+message ContentFilter {
+  string content_topic = 1;
+}
+
+message HistoryQuery {
+  // The first field is reserved for future use
+  optional string pubsub_topic = 2;
+  repeated ContentFilter content_filters = 3;
+  optional PagingInfo paging_info = 4;
+  optional sint64 start_time = 5;
+  optional sint64 end_time = 6;
+}
+
+message HistoryResponse {
+  // The first field is reserved for future use
+  repeated waku.message.v1.WakuMessage messages = 2;
+  optional PagingInfo paging_info = 3;
+  enum Error {
+    NONE = 0;
+    INVALID_CURSOR = 1;
+  }
+  Error error = 4;
+}
+
+message HistoryRPC {
+  string request_id = 1;
+  optional HistoryQuery query = 2;
+  optional HistoryResponse response = 3;
+}
