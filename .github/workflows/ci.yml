@@ -1,12 +1,19 @@
 name: ci
-on: pull_request
+on: 
+  pull_request:
+    paths:
+      - '**.proto'
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+
       - uses: bufbuild/buf-setup-action@v1
+
       - uses: bufbuild/buf-lint-action@v1
+
       - uses: bufbuild/buf-breaking-action@v1
         with:
           # The 'main' branch of the GitHub repository that defines the module.
