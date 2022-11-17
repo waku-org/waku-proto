@@ -1,10 +1,10 @@
 syntax = "proto3";
 
-import "waku/message/v1/message.proto";
-
 // 13/WAKU2-STORE rfc: https://rfc.vac.dev/spec/13/
 // Protocol identifier: /vac/waku/store/2.0.0-beta4
 package waku.store.v2beta4;
+
+import "waku/message/v1/message.proto";
 
 message Index {
   bytes digest = 1;
