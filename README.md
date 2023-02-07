@@ -6,3 +6,10 @@ environments. At a high level, Waku v2 implements a Pub/Sub messaging pattern ov
 capabilities to it.
 
 [Learn more about Waku](https://waku.org/)
+
+## Dependencies
+
+For mac:
+```console
+brew install bufbuild/buf/buf
+```
