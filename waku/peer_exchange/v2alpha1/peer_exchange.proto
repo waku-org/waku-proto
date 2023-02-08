@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+// 34/WAKU2-PEER-EXCHANGE rfc: https://rfc.vac.dev/spec/34/
+// Protocol identifier: /vac/waku/peer-exchange/2.0.0-alpha1
+package waku.peer_exchange.v2alpha1;
+
+message PeerInfo {
+  bytes enr = 1;
+}
+
+message PeerExchangeQuery {
+  uint64 num_peers = 1;
+}
+
+message PeerExchangeResponse {
+  repeated PeerInfo peer_infos = 1;
+}
+
+message PeerExchangeRPC {
+  PeerExchangeQuery query = 1;
+  PeerExchangeResponse response = 2;
+}
