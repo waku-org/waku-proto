@@ -1,27 +1,33 @@
 syntax = "proto3";
 
 // 12/WAKU2-FILTER rfc: https://rfc.vac.dev/spec/12/
-// Protocol identifier: /vac/waku/filter/2.0.0-beta1
-package waku.filter.v2beta1;
+package waku.filter.v2;
 
-import "waku/message/v1/message.proto";
-
-message FilterRequest {
-  message ContentFilter {
-    string content_topic = 1;
+// Protocol identifier: /vac/waku/filter-subscribe/2.0.0-beta1
+message FilterSubscribeRequest {
+  enum FilterSubscribeType {
+    SUBSCRIBER_PING = 0;
+    SUBSCRIBE = 1;
+    UNSUBSCRIBE = 2;
+    UNSUBSCRIBE_ALL = 3;
   }
 
-  bool subscribe = 1;
-  string topic = 2;
-  repeated ContentFilter content_filters = 3;
-}
-
-message MessagePush {
-  repeated waku.message.v1.WakuMessage messages = 1;
-}
-
-message FilterRpc {
   string request_id = 1;
-  optional FilterRequest request = 2;
-  optional MessagePush push = 3;
+  FilterSubscribeType filter_subscribe_type = 2;
+
+  // Filter criteria
+  optional string pubsub_topic = 10;
+  repeated string content_topics = 11;
+}
+
+message FilterSubscribeResponse {
+  string request_id = 1;
+  uint32 status_code = 10;
+  optional string status_desc = 11;
+}
+
+// Protocol identifier: /vac/waku/filter-push/2.0.0-beta1
+message MessagePush {
+  WakuMessage waku_message = 1;
+  optional string pubsub_topic = 2;
 }
