@@ -3,6 +3,8 @@ syntax = "proto3";
 // 12/WAKU2-FILTER rfc: https://rfc.vac.dev/spec/12/
 package waku.filter.v2;
 
+import "waku/message/v1/message.proto";
+
 // Protocol identifier: /vac/waku/filter-subscribe/2.0.0-beta1
 message FilterSubscribeRequest {
   enum FilterSubscribeType {
@@ -28,6 +30,6 @@ message FilterSubscribeResponse {
 
 // Protocol identifier: /vac/waku/filter-push/2.0.0-beta1
 message MessagePush {
-  WakuMessage waku_message = 1;
+  waku.message.v1.WakuMessage waku_message = 1;
   optional string pubsub_topic = 2;
 }
