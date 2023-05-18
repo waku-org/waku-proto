@@ -7,9 +7,9 @@ capabilities to it.
 
 [Learn more about Waku](https://waku.org/)
 
-## Dependencies
+## Requirements
 
-For mac:
-```console
-brew install bufbuild/buf/buf
-```
+- GNU Make
+- [Buf CLI](https://docs.buf.build/installation)
+- [Protobuf Compiler (protoc)](https://grpc.io/docs/protoc-installation/) (Optional)
+
