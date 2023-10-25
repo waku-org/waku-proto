@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+// rfc: https://rfc.vac.dev/spec/17/
+package waku.rln.v1;
+
+message RateLimitProof {
+  bytes proof = 1;
+  bytes merkle_root = 2;
+  bytes epoch = 3;
+  bytes share_x = 4;
+  bytes share_y = 5;
+  bytes nullifier = 6;
+  bytes rln_identifier = 7;
+}
