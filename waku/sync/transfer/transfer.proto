@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package waku.sync.transfer.v1;
+
+import "waku/message/v1/message.proto";
+
+message WakuMessageAndTopic {
+  // Full message content and associated pubsub_topic as value
+  optional waku.message.v1.WakuMessage message = 1;
+  optional string pubsub_topic = 2;
+}
