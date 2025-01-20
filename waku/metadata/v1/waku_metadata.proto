@@ -5,10 +5,21 @@ package waku.metadata.v1;
 
 message WakuMetadataRequest {
   optional uint32 cluster_id = 1;
-  repeated uint32 shards = 2;
+  repeated uint32 shards = 3;
+
+  // Starting from nwaku v0.26, if field 3 contains no data, it will attempt to
+  // decode this field first assuming it's a packed field, and if that fails,
+  // attempt to decode as an unpacked field
+  repeated uint32 shards_deprecated = 2 [deprecated=true, packed=false];
+
 }
 
 message WakuMetadataResponse {
   optional uint32 cluster_id = 1;
-  repeated uint32 shards = 2;
+  repeated uint32 shards = 3;
+
+  // Starting from nwaku v0.26, if field 3 contains no data, it will attempt to
+  // decode this field first assuming it's a packed field, and if that fails,
+  // attempt to decode as an unpacked field
+  repeated uint32 shards_deprecated = 2 [deprecated = true, packed=false];
 }
